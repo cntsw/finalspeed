@@ -1,8 +1,9 @@
-/bin/
-/client_config.json
-/port_map.json
-/*.iml
-/.idea/
-/out/
-/*.sh
-/fortest/
+*.json
+build/
+bin/
+.classpath
+.project
+*.jar
+.gradle/
+.DS_Store
+.settings/
