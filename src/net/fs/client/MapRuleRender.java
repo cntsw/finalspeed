@@ -10,9 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
-
 import net.miginfocom.swing.MigLayout;
-import sun.swing.DefaultLookup;
 
 public class MapRuleRender extends JLabel implements TableCellRenderer {
 
@@ -60,26 +58,26 @@ public class MapRuleRender extends JLabel implements TableCellRenderer {
 	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value,
 			boolean isSelected, boolean hasFocus, int row, int column) {
-		Color fg = null;
-		Color bg = null;
-		JTable.DropLocation dropLocation = table.getDropLocation();
-		if (dropLocation != null
-				&& !dropLocation.isInsertRow()
-				&& !dropLocation.isInsertColumn()
-				&& dropLocation.getRow() == row
-				&& dropLocation.getColumn() == column) {
-
-			fg = DefaultLookup.getColor(this, ui, "Table.dropCellForeground");
-			bg = DefaultLookup.getColor(this, ui, "Table.dropCellBackground");
-			isSelected = true;
-		}
-		if (isSelected) {
-			setBackground(DefaultLookup.getColor(this, ui, "Table.dropCellBackground"));
-		} else {
-			setBackground( DefaultLookup.getColor(this, ui, "Table.alternateRowColor"));
-		}
-		MapRule rule=(MapRule)value;
-		update(rule,table,row);
+//		Color fg = null;
+//		Color bg = null;
+//		JTable.DropLocation dropLocation = table.getDropLocation();
+//		if (dropLocation != null
+//				&& !dropLocation.isInsertRow()
+//				&& !dropLocation.isInsertColumn()
+//				&& dropLocation.getRow() == row
+//				&& dropLocation.getColumn() == column) {
+//
+//			fg = DefaultLookup.getColor(this, ui, "Table.dropCellForeground");
+//			bg = DefaultLookup.getColor(this, ui, "Table.dropCellBackground");
+//			isSelected = true;
+//		}
+//		if (isSelected) {
+//			setBackground(DefaultLookup.getColor(this, ui, "Table.dropCellBackground"));
+//		} else {
+//			setBackground( DefaultLookup.getColor(this, ui, "Table.alternateRowColor"));
+//		}
+//		MapRule rule=(MapRule)value;
+//		update(rule,table,row);
 		return this;
 	}
 
