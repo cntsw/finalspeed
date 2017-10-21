@@ -14,6 +14,7 @@ import net.fs.rudp.ConnectionUDP;
 import net.fs.rudp.UDPInputStream;
 import net.fs.rudp.UDPOutputStream;
 import net.fs.utils.MLog;
+import net.fs.utils.StaticUtil;
 
 public class Pipe {
 
@@ -88,8 +89,7 @@ public class Pipe {
 //					}
 //					
 //				}
-				String msg="端口"+dstPort+"连接成功";
-				MLog.println(msg);
+				StaticUtil.counterAdd(Integer.toString(dstPort));
 			}
 			os.write(buf, 0, len);
 			if(!sended){
