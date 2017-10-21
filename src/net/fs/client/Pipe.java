@@ -79,15 +79,15 @@ public class Pipe {
 				sendedb=true;
 			}
 			if(dstPort>0){
-				if(ClientUI.ui!=null){
-					if(!msged){
-						msged=true;
-						String msg="端口"+dstPort+"连接成功";
-						ClientUI.ui.setMessage(msg);
-						MLog.println(msg);
-					}
-					
-				}
+//				if(ClientUI.ui!=null){
+//					if(!msged){
+//						msged=true;
+//						String msg="端口"+dstPort+"连接成功";
+//						//ClientUI.ui.setMessage(msg);
+//						MLog.println(msg);
+//					}
+//					
+//				}
 			}
 			os.write(buf, 0, len);
 			if(!sended){

@@ -123,7 +123,7 @@ public class MapClient implements Trafficlistener{
 					} catch (InterruptedException e1) {
 						e1.printStackTrace();
 					}
-					updateUISpeed();
+//					updateUISpeed();
 				}
 			}
 		};
@@ -137,11 +137,11 @@ public class MapClient implements Trafficlistener{
 		return mapClient;
 	}
 
-	private void updateUISpeed(){
-		if(ui!=null){
-			ui.updateUISpeed(connNum,netStatus.getDownSpeed(),netStatus.getUpSpeed());
-		}
-	}
+//	private void updateUISpeed(){
+//		if(ui!=null){
+//			ui.updateUISpeed(connNum,netStatus.getDownSpeed(),netStatus.getUpSpeed());
+//		}
+//	}
 	
 	public void setMapServer(String serverAddress,int serverPort,int remotePort,String passwordMd5,String password_proxy_Md5,boolean direct_cn,boolean tcp,
 			String password){
@@ -157,7 +157,7 @@ public class MapClient implements Trafficlistener{
 				route_udp.lastClientControl.close();
 			} 
 
-			cleanRule();
+			//cleanRule();
 			if(serverAddress!=null&&!serverAddress.equals("")){
 				setFireWallRule(serverAddress,serverPort);
 			}
@@ -171,7 +171,9 @@ public class MapClient implements Trafficlistener{
 	}
 	
 
+	// 这一段是什么意思?
 	void setFireWallRule(String serverAddress,int serverPort){
+		System.out.println(serverAddress + ":" + serverPort);
 		String ip;
 		try {
 			ip = InetAddress.getByName(serverAddress).getHostAddress();
@@ -245,28 +247,28 @@ public class MapClient implements Trafficlistener{
 		}
 	}
 	
-	void cleanRule(){
-		if(systemName.contains("mac os")){
-			cleanTcpTunRule_osx();
-		}else if(systemName.contains("linux")){
-			cleanTcpTunRule_linux();
-		}else {
-			try {
-				if(systemName.contains("xp")||systemName.contains("2003")){
-					String cmd_delete="ipseccmd -p \"tcptun_fs\" -w reg -y";
-					final Process p1 = Runtime.getRuntime().exec(cmd_delete,null);
-					p1.waitFor();
-				}else {
-					String cmd_delete="netsh advfirewall firewall delete rule name=tcptun_fs ";
-					final Process p1 = Runtime.getRuntime().exec(cmd_delete,null);
-					p1.waitFor();
-				}
-			
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
+//	void cleanRule(){
+//		if(systemName.contains("mac os")){
+//			cleanTcpTunRule_osx();
+//		}else if(systemName.contains("linux")){
+//			cleanTcpTunRule_linux();
+//		}else {
+//			try {
+//				if(systemName.contains("xp")||systemName.contains("2003")){
+//					String cmd_delete="ipseccmd -p \"tcptun_fs\" -w reg -y";
+//					final Process p1 = Runtime.getRuntime().exec(cmd_delete,null);
+//					p1.waitFor();
+//				}else {
+//					String cmd_delete="netsh advfirewall firewall delete rule name=tcptun_fs ";
+//					final Process p1 = Runtime.getRuntime().exec(cmd_delete,null);
+//					p1.waitFor();
+//				}
+//			
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+//	}
 	
 	void cleanTcpTunRule_osx(){
 		String cmd2="sudo ipfw delete 5050";
