@@ -2,10 +2,8 @@
 
 package net.fs.client;
 
-import java.io.FileOutputStream;
 import java.net.InetAddress;
 import java.util.HashSet;
-import java.util.Random;
 
 import net.fs.rudp.ClientProcessorInterface;
 import net.fs.rudp.ConnectionProcessor;
@@ -18,7 +16,7 @@ public class MapClient implements Trafficlistener{
 
 	ConnectionProcessor imTunnelProcessor;
 
-	Route route_udp,route_tcp;
+	Route route_udp; //route_tcp
 
 	short routePort=45;
 
@@ -36,10 +34,6 @@ public class MapClient implements Trafficlistener{
 
 	int uploadSum=0;
 
-	Thread clientUISpeedUpdateThread;
-
-	int connNum=0;
-	
 	HashSet<ClientProcessorInterface> processTable=new HashSet<ClientProcessorInterface>();
 	
 	Object syn_process=new Object();
@@ -48,27 +42,8 @@ public class MapClient implements Trafficlistener{
 	
 	PortMapManager portMapManager;
 		
-	public String mapdstAddress;
-	 
-	public int mapdstPort;
-	
-	String systemName=System.getProperty("os.name").toLowerCase();
-	
-	boolean useTcp=true;
-	
-	long clientId;
-
-	Random ran=new Random();
-	
-	boolean tcpEnable;
-
 	MapClient(boolean tcpEnvSuccess) throws Exception {
 		mapClient=this;
-		try {
-			route_tcp = new Route(null,routePort,Route.mode_client,true,tcpEnvSuccess);
-		} catch (Exception e1) {
-			throw e1;
-		}
 		try {
 			route_udp = new Route(null,routePort,Route.mode_client,false,tcpEnvSuccess);
 		} catch (Exception e1) {
@@ -89,10 +64,6 @@ public class MapClient implements Trafficlistener{
 				||!this.serverAddress.equals(serverAddress)
 				||this.serverPort!=serverPort){
 			
-			if(route_tcp.lastClientControl!=null){
-				route_tcp.lastClientControl.close();
-			} 
-			
 			if(route_udp.lastClientControl!=null){
 				route_udp.lastClientControl.close();
 			} 
@@ -100,21 +71,6 @@ public class MapClient implements Trafficlistener{
 		this.serverAddress=serverAddress;
 		this.serverPort=serverPort;
 		this.address=null;
-		this.useTcp=tcp;
-	}
-
-	void saveFile(byte[] data,String path) throws Exception{
-		FileOutputStream fos=null;
-		try {
-			fos=new FileOutputStream(path);
-			fos.write(data);
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			if(fos!=null){
-				fos.close();
-			}
-		}
 	}
 
 	public void onProcessClose(ClientProcessorInterface process){
@@ -135,13 +91,5 @@ public class MapClient implements Trafficlistener{
 		netStatus.addUpload(event.getTraffic());
 		lastTrafficTime=System.currentTimeMillis();
 		uploadSum+=event.getTraffic();
-	}
-
-	public boolean isUseTcp() {
-		return useTcp;
-	}
-
-	public void setUseTcp(boolean useTcp) {
-		this.useTcp = useTcp;
 	}
 }

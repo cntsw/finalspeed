@@ -200,12 +200,8 @@ public class PortMapManager {
 								MapRule mapRule=mapRuleTable.get(listenPort);
 								if(mapRule!=null){
 									Route route=null;
-									if(mapClient.isUseTcp()){
-										route=mapClient.route_tcp;
-									}else {
-										route=mapClient.route_udp;
-									}
-									PortMapProcess process=new PortMapProcess(mapClient,route, socket,mapClient.serverAddress,mapClient.serverPort,null, 
+									route=mapClient.route_udp;
+									PortMapProcess process=new PortMapProcess(mapClient,route, socket,mapClient.serverAddress,mapClient.serverPort,null,
 											null,mapRule.dst_port);
 								}
 							}

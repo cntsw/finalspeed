@@ -59,12 +59,16 @@ public class FSClient {
 			e1.printStackTrace();
 		}
 
-//		if (!mapClient.route_tcp.capEnv.tcpEnable) {
-//			System.out.println("无可用网络接口,只能使用udp协议.");
-//		}
 
-		mapClient.setMapServer(config.getServerAddress(), config.getServerPort(), config.getRemotePort(), null, null,
-				config.isDirect_cn(), config.getProtocal().equals("tcp"), null);
+		mapClient.setMapServer(
+				config.getServerAddress(),
+                config.getServerPort(),
+                config.getRemotePort(),
+                null,
+                null,
+				config.isDirect_cn(),
+                config.getProtocal().equals("tcp"),
+                null);
 
 		Route.localDownloadSpeed = config.getDownloadSpeed();
 		Route.localUploadSpeed = config.getUploadSpeed();
