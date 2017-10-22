@@ -1,55 +1,32 @@
-# FinalSpeed
-FinalSpeed是高速双边加速软件,可加速所有基于tcp协议的网络服务,在高丢包和高延迟环境下,仍可达到90%的物理带宽利用率,即使高峰时段也能轻松跑满带宽.
+![build status](https://api.travis-ci.org/cntsw/finalspeed.svg?branch=master)
 
-### 安装教程
-[客户端安装说明](http://www.ip4a.com/t/513.html)
-<br />
-[服务端安装说明](http://www.ip4a.com/t/515.html)
+精简版finalspeed, 去掉ui, 防火墙配置和tcp模式
 
-### 使用帮助
-```
-需要管理员权限
-java -jar finalspeed.jar -b 运行CLI版
-java -jar finalspeed.jar 运行GUI版
-```
 
-CLI版本需要手动配置, 且配置文件与finalspeed必须处在同一目录下.
-clien_config.json
-```
-{
-    // 下载速度，单位是 B，字节。这里换算起来就是 11MB。请把这里改成本机的下载速度
-    "download_speed": 11200698, 
-    // 协议：tcp 或 udp。注意：服务端如果是 OpenVZ 架构的话，则只支持 udp。
-    "protocal": "udp", 
-    // 服务器地址
-    "server_address": "1.2.3.4", 
-    // 一般不需要更改，保持默认即可。
-    "server_port": 150, 
-    // 不需要更改，保持默认即可。
-    "socks5_port": 1083, 
-    // 上传速度，单位是 B，字节。
-    "upload_speed": 357469
-}
-```
-port_map.json
-```
-{
-    "map_list": [
-        {
-            // 要加速的服务器端口
-            "dst_port": 12345, 
-            // 本地端口
-            "listen_port": 1099, 
-            // 备注信息
-            "name": "ss"
-        }, 
-        {
-            "dst_port": 23456, 
-            "listen_port": 2200, 
-            "name": "ssh"
-        }
-    ]
-}
-```
+# finalspeed
+高速双边加速软件,在高丢包,延迟环境下仍可达到90%物理带宽利用率.
 
-论坛 http://www.ip4a.com/c/131.html
+声明:
+本软件为双边TCP加速软件,工作于传输层,仅加快传输层速度,不提供任何具体应用和服务.
+
+高级版官网
+http://www.tcpspeed.com/
+
+TCPSpeed和FinalSpeed区别
+
+1.tcpspeed是fs的高级版,具备fs的所有功能.
+
+2.运行更稳定,没有断流,无响应情况.
+
+3.效率更高,速度快1-10倍.
+
+4.tcpspeed支持传输加密,fs没有加密.
+
+5.tcpspeed客户端可设置加速任意远程服务器(通过tcpspeed服务端转发),fs只能加速fs所在服务器.
+
+方法:目的地址填入任意服务器的地址
+
+7.tcpspeed支持多用户,设置登录密码.
+
+8.长期维护更新.
+
